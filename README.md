@@ -54,7 +54,7 @@ Usage: go run . input_file hint_level format_type
 - input_file: A path to the file needs to generate wordwise
 - hint_level: From 1 to 5, where 5 shows all wordwise hints and 1 shows hints only for hard words with definitions. The default is 5
 - format_type: The format type of the output book, (ex: "epub"). The default is to use the input format. Note: the "mobi" format is not compatible with this tool.
-- language: The language output for wordwise meaning is only supported in "en", "vi" and "cn".
+- language: The language output for wordwise meaning is only supported in "en" (English), "vi" (Vietnamese), "cn" (Chinese), "ar" (Arabic), "de" (German), "es" (Spanish), "fr" (French), "hi" (Hindi), "jp" (Japanese), "ko" (Korean), "pt" (Portuguese), "ru" (Russian), "th" (Thai), "ua" (Ukrainian).
 - show phoneme: display the IPA phoneme, value can be "yes" and "no", or "y" and "n".
 
 The output book will be exported at the same location as the input book with the "-wordwise" suffix.
