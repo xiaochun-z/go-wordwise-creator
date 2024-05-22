@@ -15,14 +15,14 @@ var hintLevel int = 5
 var formatType string
 var inputPath string
 var wLang string = "en"
-var isVietnamese bool = false
+var including_phoneme bool = false
 var isDirectRun bool = false
 
 func main() {
 	readInputParams(os.Args)
 
 	log.Println("[+] Input path:", inputPath)
-	log.Println(fmt.Sprintf("[+] Hint level: %d, Output format type: %s, Language: %s", hintLevel, formatType, wLang))
+	log.Println(fmt.Sprintf("[+] Hint level: %d, Output format type: %s, Language: %s, including Phoneme: %s", hintLevel, formatType, wLang, including_phoneme))
 
 	log.Println("[+] Load wordwise dict")
 	loadWordwiseDict()
@@ -75,6 +75,10 @@ func readInputParams(args []string) {
 		if len(args) > 4 {
 			assignLanguage(args[4])
 		}
+
+		if len(args) > 5 {
+			assignPhoneme(args[5])
+		}
 	}
 }
 
@@ -100,11 +104,17 @@ func readInputFromConsole() {
 	scanValue = strings.TrimSuffix(scanValue, "\n")
 	assignOutputFormat(scanValue)
 
-	log.Println("Enter language (\"en\" or \"vi\" only): ")
+	log.Println("Enter language (\"en\", \"vi\", \"cn\"): ")
 	fmt.Print("                    ")
 	scanValue, _ = userInput.ReadString('\n')
 	scanValue = strings.TrimSuffix(scanValue, "\n")
 	assignLanguage(scanValue)
+
+	log.Println("Including Phoneme? (y/n): ")
+	fmt.Print("                    ")
+	scanValue, _ = userInput.ReadString('\n')
+	scanValue = strings.TrimSuffix(scanValue, "\n")
+	assignPhoneme(scanValue)
 }
 
 func assignInputPath(scanValue string) {
@@ -136,10 +146,15 @@ func assignOutputFormat(scanValue string) {
 
 func assignLanguage(scanValue string) {
 	wLang = scanValue
-	if wLang == "vi" {
-		isVietnamese = true
-	} else {
-		wLang = "en"
+}
+
+func assignPhoneme(scanValue string) {
+	including_phoneme = false
+
+	if scanValue == "y" || scanValue == "yes" {
+		including_phoneme = true
+	} else if scanValue == "n" || scanValue == "no" {
+		including_phoneme = false
 	}
 }
 

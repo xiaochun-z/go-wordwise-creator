@@ -204,7 +204,7 @@ func getWordwisePhrase(chars []rune, word string, from int) (string, string) {
 
 func wrapWithRubyTag(ws *DictRow, phrase string) string {
 	trimmed := trimWord(phrase)
-	modded := fmt.Sprintf("<ruby>%s<rt>%s</rt></ruby>", trimmed, ws.meaning(isVietnamese))
+	modded := fmt.Sprintf("<ruby>%s<rt>%s</rt></ruby>", trimmed, ws.meaning(including_phoneme))
 	return strings.Replace(phrase, trimmed, modded, 1)
 }
 

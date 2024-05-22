@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/csv"
+	"fmt"
 	"io"
 	"log"
 	"os"
@@ -9,7 +10,7 @@ import (
 )
 
 const (
-	WordwiseDictionaryPath = "resources/wordwise-dict-optimized.csv"
+	WordwiseDictionaryPath = "resources/wordwise-dict.%s.csv"
 	LemmaDictionaryPath    = "resources/lemmatization-en.csv"
 )
 
@@ -17,31 +18,33 @@ var wordwiseDict *map[string]DictRow
 var lemmaDict *map[string]string
 
 type DictRow struct {
-	Word    string
-	Phoneme string
-	En      string
-	Vi      string
-	HintLvl int
+	Word             string
+	Phoneme          string
+	Full_Def         string
+	Short_Def        string
+	ExampleSentences string
+	HintLvl          int
 }
 
-func (ws *DictRow) meaning(isVietnamese bool) string {
-	if isVietnamese {
+func (ws *DictRow) meaning(including_phoneme bool) string {
+	if including_phoneme {
 		if len(ws.Phoneme) > 0 {
-			return ws.Phoneme + " " + ws.Vi
+			return ws.Phoneme + " " + ws.Short_Def
 		} else {
-			return ws.Vi
+			return ws.Short_Def
 		}
 	} else {
-		return ws.En
+		return ws.Short_Def
 	}
 }
 
 // Load Dict from CSV
 func loadWordwiseDict() {
+	wordwise_dict_path := fmt.Sprintf(WordwiseDictionaryPath, wLang)
 
-	file, err := os.Open(WordwiseDictionaryPath)
+	file, err := os.Open(wordwise_dict_path)
 	if err != nil {
-		logFatalln("Error when open ", WordwiseDictionaryPath, "->", err)
+		logFatalln("Error when open ", wordwise_dict_path, "->", err)
 	}
 	defer func() {
 		err := file.Close()
@@ -78,18 +81,19 @@ func loadWordwiseDict() {
 			continue
 		}
 
-		hintLv, err := strconv.Atoi(record[4])
+		hintLv, err := strconv.Atoi(record[6])
 		if err != nil {
 			log.Println("Can't get hint_level: ", record, "->", err)
 			continue
 		}
 
 		row = DictRow{
-			Word:    record[0],
-			Phoneme: record[1],
-			En:      record[2],
-			Vi:      record[3],
-			HintLvl: hintLv,
+			Word:             record[1],
+			Phoneme:          record[2],
+			Full_Def:         record[3],
+			Short_Def:        record[4],
+			ExampleSentences: record[5],
+			HintLvl:          hintLv,
 		}
 
 		dict[row.Word] = row

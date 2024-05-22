@@ -54,13 +54,14 @@ Usage: go run . input_file hint_level format_type
 - input_file: A path to the file needs to generate wordwise
 - hint_level: From 1 to 5, where 5 shows all wordwise hints and 1 shows hints only for hard words with definitions. The default is 5
 - format_type: The format type of the output book, (ex: "epub"). The default is to use the input format. Note: the "mobi" format is not compatible with this tool.
-- language: The language output for wordwise meaning is only supported in "en" and "vi"
+- language: The language output for wordwise meaning is only supported in "en", "vi" and "cn".
+- show phoneme: display the IPA phoneme, value can be "yes" and "no", or "y" and "n".
 
 The output book will be exported at the same location as the input book with the "-wordwise" suffix.
 ```
 
 Example: `go run . Sample_book_test.epub`  
-OR `go run . Sample_book_test.epub 3 azw3 en`  
+OR `go run . Sample_book_test.epub 3 azw3 en yes`  
 
 ### To prepare another optimized dictionary
 Use Excel or Google Sheets to edit the `wordwise-dict.csv` file, use Google Translate to translate words to Vietnamese, use the `lemmatization-en.csv` file as the lemmatizer dictionary, and use the `phoneme-dict.csv` then use VLOOKUP function to get the phoneme of each word in the original file.
