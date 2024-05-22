@@ -24,8 +24,8 @@ And use Google Translate to prepare resources for Vietnamese meaning
     + On MacOS, install Calibre at `/Applications`, if not please correct the config in your path  
 - Download the latest version from [latest release](https://github.com/kenilt/go-wordwise-creator/releases/latest), unzip then double click on the `go-wordwise-creator` binary file to run (On MacOS, right click > Open to run).  
 - OR you can run by the command  
-    + On Windows: `go-wordwise-creator.exe input_path hint_level format_type language`  
-    + On MacOS: `./go-wordwise-creator input_path hint_level format_type language`
+    + On Windows: `go-wordwise-creator.exe input_path hint_level format_type language y`  
+    + On MacOS: `./go-wordwise-creator input_path hint_level format_type language y`
 
 ### Screenshots
 ![Apr-24-2023 17-26-39](https://user-images.githubusercontent.com/3811063/233970925-f4a4c8a0-4065-4ccb-a2e8-404bad01462c.gif)
@@ -47,7 +47,7 @@ Update all the needed dependencies
 `go mod download`
 
 To create a wordwise book:   
-`go run . input_path hint_level format_type language`
+`go run . input_path hint_level format_type language y`
 
 ```
 Usage: go run . input_file hint_level format_type
