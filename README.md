@@ -50,7 +50,8 @@ To create a wordwise book:
 `go run . input_path hint_level format_type language y`
 
 ```
-Usage: go run . input_file hint_level format_type
+Usage: go run . input_file hint_level format_type language show_phoneme definition_length
+```
 - input_file: A path to the file needs to generate wordwise
 - hint_level: From 1 to 5, where 5 shows all wordwise hints and 1 shows hints only for hard words with definitions. The default is 5
 - format_type: The format type of the output book, (ex: "epub"). The default is to use the input format. Note: the "mobi" format is not compatible with this tool.
@@ -59,7 +60,7 @@ Usage: go run . input_file hint_level format_type
 - definition length: display the definition, use 0 to disable the wordwise definition, this can be useful if you just want to display the phoneme for you; use 1 for short definition; use 2 for long definition, it takes more spaces in your book but it also provides more information.
 
 The output book will be exported at the same location as the input book with the "-wordwise" suffix.
-```
+
 
 Example: `go run . Sample_book_test.epub`  
 OR `go run . Sample_book_test.epub 3 azw3 en yes 1`  
