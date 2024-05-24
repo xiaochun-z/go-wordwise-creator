@@ -24,8 +24,8 @@ And use Google Translate to prepare resources for Vietnamese meaning
     + On MacOS, install Calibre at `/Applications`, if not please correct the config in your path  
 - Download the latest version from [latest release](https://github.com/kenilt/go-wordwise-creator/releases/latest), unzip then double click on the `go-wordwise-creator` binary file to run (On MacOS, right click > Open to run).  
 - OR you can run by the command  
-    + On Windows: `go-wordwise-creator.exe input_path hint_level format_type language y`  
-    + On MacOS: `./go-wordwise-creator input_path hint_level format_type language y`
+    + On Windows: `go-wordwise-creator.exe input_path hint_level format_type language y 1`  
+    + On MacOS: `./go-wordwise-creator input_path hint_level format_type language y 1`
 
 ### Screenshots
 ![Apr-24-2023 17-26-39](https://user-images.githubusercontent.com/3811063/233970925-f4a4c8a0-4065-4ccb-a2e8-404bad01462c.gif)
@@ -56,12 +56,13 @@ Usage: go run . input_file hint_level format_type
 - format_type: The format type of the output book, (ex: "epub"). The default is to use the input format. Note: the "mobi" format is not compatible with this tool.
 - language: The language output for wordwise meaning is only supported in "en" (English), "vi" (Vietnamese), "cn" (Chinese), "ar" (Arabic), "de" (German), "es" (Spanish), "fr" (French), "hi" (Hindi), "jp" (Japanese), "ko" (Korean), "pt" (Portuguese), "ru" (Russian), "th" (Thai), "ua" (Ukrainian).
 - show phoneme: display the IPA phoneme, value can be "yes" and "no", or "y" and "n".
+- definition length: display the definition, use 0 to disable the wordwise definition, this can be useful if you just want to display the phoneme for you; use 1 for short definition; use 2 for long definition, it takes more spaces in your book but it also provides more information.
 
 The output book will be exported at the same location as the input book with the "-wordwise" suffix.
 ```
 
 Example: `go run . Sample_book_test.epub`  
-OR `go run . Sample_book_test.epub 3 azw3 en yes`  
+OR `go run . Sample_book_test.epub 3 azw3 en yes 1`  
 
 ### To prepare another optimized dictionary
 Use Excel or Google Sheets to edit the `wordwise-dict.csv` file, use Google Translate to translate words to Vietnamese, use the `lemmatization-en.csv` file as the lemmatizer dictionary, and use the `phoneme-dict.csv` then use VLOOKUP function to get the phoneme of each word in the original file.

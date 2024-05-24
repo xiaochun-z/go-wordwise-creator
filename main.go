@@ -16,13 +16,14 @@ var formatType string
 var inputPath string
 var wLang string = "en"
 var including_phoneme bool = false
+var defLenth int = 1
 var isDirectRun bool = false
 
 func main() {
 	readInputParams(os.Args)
 
 	log.Println("[+] Input path:", inputPath)
-	log.Println(fmt.Sprintf("[+] Hint level: %d, Output format type: %s, Language: %s, Phoneme: %t", hintLevel, formatType, wLang, including_phoneme))
+	log.Println(fmt.Sprintf("[+] Hint level: %d, Output format type: %s, Language: %s, Phoneme: %t, Definetion lenth: %d", hintLevel, formatType, wLang, including_phoneme, defLenth))
 
 	log.Println("[+] Load wordwise dict")
 	loadWordwiseDict()
@@ -79,6 +80,10 @@ func readInputParams(args []string) {
 		if len(args) > 5 {
 			assignPhoneme(args[5])
 		}
+
+		if len(args) > 6 {
+			assignDefinitionLength(args[6])
+		}
 	}
 }
 
@@ -115,6 +120,12 @@ func readInputFromConsole() {
 	scanValue, _ = userInput.ReadString('\n')
 	scanValue = strings.TrimSpace(scanValue)
 	assignPhoneme(scanValue)
+
+	log.Println("Enter the length of wordwise(0: disable the definition, 1: short description, 2: long description)? (0,1,2): ")
+	fmt.Print("                    ")
+	scanValue, _ = userInput.ReadString('\n')
+	scanValue = strings.TrimSpace(scanValue)
+	assignDefinitionLength(scanValue)
 }
 
 func assignInputPath(scanValue string) {
@@ -155,6 +166,17 @@ func assignPhoneme(scanValue string) {
 		including_phoneme = true
 	} else if scanValue == "n" || scanValue == "no" {
 		including_phoneme = false
+	}
+}
+
+func assignDefinitionLength(scanValue string) {
+	parseNum, err := strconv.Atoi(scanValue)
+	if err == nil {
+		if defLenth >= 0 && defLenth <= 2 {
+			defLenth = parseNum
+		} else {
+			defLenth = 1
+		}
 	}
 }
 

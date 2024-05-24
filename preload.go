@@ -27,15 +27,18 @@ type DictRow struct {
 }
 
 func (ws *DictRow) meaning(including_phoneme bool) string {
-	if including_phoneme {
-		if len(ws.Phoneme) > 0 {
-			return ws.Phoneme + " " + ws.Short_Def
-		} else {
-			return ws.Short_Def
-		}
-	} else {
-		return ws.Short_Def
+	definition := ""
+	if including_phoneme && len(ws.Phoneme) > 0 {
+		definition += ws.Phoneme
 	}
+
+	if defLenth == 1 {
+		definition += " " + ws.Short_Def
+	} else if defLenth == 2 {
+		definition += " " + ws.Full_Def
+	}
+
+	return definition
 }
 
 // Load Dict from CSV
