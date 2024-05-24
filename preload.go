@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"strings"
 )
 
 const (
@@ -38,7 +39,7 @@ func (ws *DictRow) meaning(including_phoneme bool) string {
 		definition += " " + ws.Full_Def
 	}
 
-	return definition
+	return strings.TrimSpace(definition)
 }
 
 // Load Dict from CSV
