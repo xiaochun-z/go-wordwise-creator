@@ -30,6 +30,8 @@ func TestProcessHtmlData_Pharse(t *testing.T) {
 
 func setup() {
 	if wordwiseDict == nil {
+		wLang = "en"
+		including_phoneme = false
 		loadWordwiseDict()
 		loadLemmatizerDict()
 	}

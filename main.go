@@ -22,7 +22,7 @@ func main() {
 	readInputParams(os.Args)
 
 	log.Println("[+] Input path:", inputPath)
-	log.Println(fmt.Sprintf("[+] Hint level: %d, Output format type: %s, Language: %s, including Phoneme: %s", hintLevel, formatType, wLang, including_phoneme))
+	log.Println(fmt.Sprintf("[+] Hint level: %d, Output format type: %s, Language: %s, Phoneme: %t", hintLevel, formatType, wLang, including_phoneme))
 
 	log.Println("[+] Load wordwise dict")
 	loadWordwiseDict()
@@ -101,19 +101,19 @@ func readInputFromConsole() {
 	log.Println("Enter output format (not support \"mobi\"): ")
 	fmt.Print("                    ")
 	scanValue, _ = userInput.ReadString('\n')
-	scanValue = strings.TrimSuffix(scanValue, "\n")
+	scanValue = strings.TrimSpace(scanValue)
 	assignOutputFormat(scanValue)
 
-	log.Println("Enter language (\"en\", \"vi\", \"cn\"): ")
+	log.Println("Enter language (\"en\", \"vi\", \"cn\", \"ar\", \"de\", \"es\", \"fr\", \"hi\", \"jp\", \"ko\", \"pt\", \"ru\", \"th\", \"ua\"): ")
 	fmt.Print("                    ")
 	scanValue, _ = userInput.ReadString('\n')
-	scanValue = strings.TrimSuffix(scanValue, "\n")
+	scanValue = strings.TrimSpace(scanValue)
 	assignLanguage(scanValue)
 
 	log.Println("Including Phoneme? (y/n): ")
 	fmt.Print("                    ")
 	scanValue, _ = userInput.ReadString('\n')
-	scanValue = strings.TrimSuffix(scanValue, "\n")
+	scanValue = strings.TrimSpace(scanValue)
 	assignPhoneme(scanValue)
 }
 

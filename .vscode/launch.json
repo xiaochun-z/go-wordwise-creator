@@ -27,6 +27,14 @@
         "en",
         "yes"
       ]
+    },
+    {
+      "name": "Go-Launch-No-Param",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${fileDirname}",
+      "console": "integratedTerminal"
     }
   ]
 }

@@ -14,7 +14,7 @@ And use Google Translate to prepare resources for Vietnamese meaning
 - [x] Support multiple book formats
 - [x] Support stemming words
 - [x] Support pronunciation symbols
-- [x] Support meaning in English, and Vietnamese
+- [x] Support meaning in English, Vietnamese, Chinese, Arabic, German, Spanish, French, Hindi, Japanese, Korean, Portuguese, Russian, Thai and Ukrainian
 - [x] Support the meaning of phrases
 - [x] The speed is impressive, almost books were processed in seconds
 
